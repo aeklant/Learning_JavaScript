@@ -2,16 +2,24 @@
 <html>
     <head>
         <script>
-            function assert( value, desc ){
+            function assert(value, desc) {
+                "use strict"
                 var li = document.createElement("li");
+
                 li.className = value ? "pass" : "fail";
                 li.appendChild( document.createTextNode(desc) );
-                document.getElementById( "results" ).appendChild(li);
+                document.getElementById("results").appendChild(li);
             }
+			
+			function useless(callback) {
+                "use strict"
+				return callback();
+			}
 
-            window.onload = function() {
-                assert( true, "The test suite is running!" );
-                assert( false, "Fail!" );
+            window.onload = function () {
+				var text = "Domo Arigato!";
+                assert(useless(function (){return text;}) === text,
+								 "The useless function works! " + text);
             };
         </script>
         <style>
